@@ -5,4 +5,6 @@ Mainly written for a school project.
 
 Totally work in progress.
 
+Comments are in German.
+
 TODO: Besseres README (mit Bildern?)

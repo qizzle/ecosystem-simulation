@@ -3,6 +3,7 @@ import sys
 from pygame.locals import *
 
 import src.input as inputManager
+import src.generation as generation
 
 class Ecosystem:
   def __init__(self) -> None:
@@ -16,9 +17,12 @@ class Ecosystem:
     self.clock = pygame.time.Clock()
     self.screen = pygame.display.set_mode(self.DISPLAY, FULLSCREEN | SCALED)
     self.deltaTime = 1 / self.FPS # deltaTime ist die Zeit, die seit dem letzten Frame vergangen ist.
+    self.defaultColor = (206, 225, 189)
     self.running = True
     
     self.input = inputManager.Input()
+    self.generation = generation.Generation()
+    self.generationData = self.generation.generate()
   
   def quit(self) -> None:
     self.running = False
@@ -35,7 +39,9 @@ class Ecosystem:
           
   
   def draw(self, screen) -> None:
-    screen.fill((110, 100, 80))
+    screen.fill(self.defaultColor)
+    
+    self.generation.draw(screen, self.generationData)
     
     pygame.display.flip()
   
