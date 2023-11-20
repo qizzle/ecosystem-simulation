@@ -3,22 +3,19 @@ import pygame
 import os
 import random
 
-import src.main
-
 class Generation:
   def __init__(self) -> None:
     self.tree = pygame.image.load(os.path.join("src", "assets", "tree16x32.png"))
-    self.x, self.y = src.main.Ecosystem().DISPLAY
   
-  def generate(self):
+  def generate(self) -> list:
     data = []
     for i in range(32):
-      randomX = random.randint(0, self.x)
-      randomY = random.randint(0, self.y)
-      data.append({"object": self.tree, "x": self.randomX, "y": self.randomY})
+      randomX = random.randint(0, 512)
+      randomY = random.randint(0, 512)
+      data.append([self.tree, randomX, randomY])
     return data
       
       
   def draw(self, screen, data):
       for i in data:
-        screen.blit(i["object"], (i["x"], i["y"]))
+        screen.blit(i[0], (i[1], i[2]))

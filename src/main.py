@@ -15,7 +15,7 @@ class Ecosystem:
     pygame.init()
     self.DISPLAY = (self.CANVAS * self.TEXTURESIZE, self.CANVAS * self.TEXTURESIZE)
     self.clock = pygame.time.Clock()
-    self.screen = pygame.display.set_mode(self.DISPLAY, FULLSCREEN | SCALED)
+    self.screen = pygame.display.set_mode(self.DISPLAY, SCALED)
     self.deltaTime = 1 / self.FPS # deltaTime ist die Zeit, die seit dem letzten Frame vergangen ist.
     self.defaultColor = (206, 225, 189)
     self.running = True
@@ -31,7 +31,12 @@ class Ecosystem:
   
   def update(self, deltaTime) -> None:
     
-    self.input.register(pygame.key.get_pressed())
+    keys = pygame.key.get_pressed()
+    
+    self.input.register(keys)
+    
+    if keys[K_r]:
+      self.generationData = self.generation.generate()
     
     for event in pygame.event.get():
       if event.type == QUIT:
