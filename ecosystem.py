@@ -1,4 +1,5 @@
-import src.main as game
 
-ecosystem = game.Ecosystem()
-ecosystem.run()
+import main
+
+game = main.Ecosystem()
+game.run()
