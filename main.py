@@ -3,6 +3,8 @@ import pygame
 import sys
 from pygame.locals import *
 
+from generation import Generation
+
 class Ecosystem:
   def __init__(self) -> None:
     
@@ -13,6 +15,7 @@ class Ecosystem:
     self.clock = pygame.time.Clock()
     
     self.current_gametick = 0
+    self.gen = Generation()
     
   def run(self) -> None:
     
@@ -22,6 +25,8 @@ class Ecosystem:
           pygame.quit()
           sys.exit()
       
-      self.screen.fill("#71ddee")
+      self.screen.fill("#472d3c")
+
+      self.gen.run(self.screen)
       
       pygame.display.update()
